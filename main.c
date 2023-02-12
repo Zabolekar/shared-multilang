@@ -3,12 +3,13 @@
 
 static const size_t BUFFER_SIZE = 3;
 
-#define FUNCTION_COUNT 3
+#define FUNCTION_COUNT 4
 void a(size_t n, int buf[n]);
 void b(size_t n, int buf[n]);
 void c(size_t n, int buf[n]);
+void d(size_t n, int buf[n]);
 typedef void(*function)(size_t, int*);
-static const function functions[FUNCTION_COUNT] = { a, b, c };
+static const function functions[FUNCTION_COUNT] = { a, b, c, d };
 
 void print(size_t n, int buf[n])
 {
