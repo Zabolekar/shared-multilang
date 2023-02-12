@@ -1,3 +1,11 @@
-Creates simple shared libraries in C, C++, Nim, Zig and Rust. Uses them from C. Only tested on Linux.
+Creates simple shared libraries. Uses them from C. Only tested on Linux.
 
-Run `make`. The output at the end should be `012 345 678 901 234`.
+Languages tested:
+- C
+- C++
+- Nim
+- Zig
+- Rust
+- NASM
+
+Run `make`. The output at the end should be `012 345 678 901 234 567`.
