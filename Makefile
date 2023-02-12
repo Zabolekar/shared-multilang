@@ -1,23 +1,23 @@
 run: main
 	./main
 
-main: a.so b.so c.so d.so e.so
-	gcc main.c -o main -L . -l :a.so -l :b.so -l :c.so -l :d.so -l :e.so -Wl,-rpath=.
+main: 1.so 2.so 3.so 4.so 5.so
+	gcc main.c -o main -L . -l:1.so -l:2.so -l:3.so -l:4.so -l:5.so -Wl,-rpath=.
 
-a.so:
-	gcc -shared a.c -o a.so
+1.so:
+	gcc -shared lib1.c -o 1.so
 
-b.so:
-	g++ -shared b.cpp -o b.so
+2.so:
+	g++ -shared lib2.cpp -o 2.so
 
-c.so:
-	nim c -d:release --noMain --app:lib -o:c.so c.nim
+3.so:
+	nim c -d:release --noMain --app:lib -o:3.so lib3.nim
 
-d.so:
-	zig build-lib -femit-bin=d.so -fsoname=d.so -dynamic d.zig
+4.so:
+	zig build-lib -femit-bin=4.so -fsoname=4.so -dynamic lib4.zig
 
-e.so:
-	rustc --crate-type=cdylib e.rs -o e.so
+5.so:
+	rustc --crate-type=cdylib lib5.rs -o 5.so
 
 clean:
 	rm -f *.so main
