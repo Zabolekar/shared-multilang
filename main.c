@@ -9,8 +9,9 @@ void c(size_t n, int buf[n]);
 void d(size_t n, int buf[n]);
 void e(size_t n, int buf[n]);
 void f(size_t n, int buf[n]);
+void g(size_t n, int buf[n]);
 typedef void(*function)(size_t, int*);
-static const function functions[] = { a, b, c, d, e, f };
+static const function functions[] = { a, b, c, d, e, f, g };
 static const size_t FUNCTION_COUNT = sizeof functions / sizeof(function);
 
 void print(size_t n, int buf[n])

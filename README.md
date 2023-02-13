@@ -6,6 +6,7 @@ Languages tested:
 - Nim
 - Zig
 - Rust
-- NASM
+- NASM (for x86_64)
+- GNU Assembler (for x86_64)
 
-Run `make`. The output at the end should be `012 345 678 901 234 567`.
+Run `make`. The output at the end should be `012 345 678 901 234 567 890`.

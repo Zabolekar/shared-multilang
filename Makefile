@@ -1,8 +1,8 @@
 run: main
 	./main
 
-main: 1.so 2.so 3.so 4.so 5.so 6.so
-	gcc main.c -o main -L . -l:1.so -l:2.so -l:3.so -l:4.so -l:5.so -l:6.so -Wl,-rpath=.
+main: 1.so 2.so 3.so 4.so 5.so 6.so 7.so
+	gcc main.c -o main -L . -l:1.so -l:2.so -l:3.so -l:4.so -l:5.so -l:6.so -l:7.so -Wl,-rpath=.
 
 1.so:
 	gcc -shared lib1.c -o 1.so
@@ -22,6 +22,9 @@ main: 1.so 2.so 3.so 4.so 5.so 6.so
 6.so:
 	nasm -felf64 lib6.asm
 	ld -shared lib6.o -o 6.so
+
+7.so:
+	gcc -shared lib7.s -o 7.so
 
 clean:
 	rm -f *.o *.so main
