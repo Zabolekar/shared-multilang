@@ -1,30 +1,30 @@
 run: main
 	./main
 
-main: 1.so 2.so 3.so 4.so 5.so 6.so 7.so
-	gcc main.c -o main -L . -l:1.so -l:2.so -l:3.so -l:4.so -l:5.so -l:6.so -l:7.so -Wl,-rpath=.
+main: main.c 1.so 2.so 3.so 4.so 5.so 6.so 7.so
+	gcc $^ -Wl,-rpath=. -o $@
 
-1.so:
-	gcc -shared lib1.c -o 1.so
+1.so: lib1.c
+	gcc $^ -shared -o $@
 
-2.so:
-	g++ -shared lib2.cpp -o 2.so
+2.so: lib2.cpp
+	g++ $^ -shared -o $@
 
-3.so:
-	nim c -d:release --noMain --app:lib -o:3.so lib3.nim
+3.so: lib3.nim
+	nim c -d:release --noMain --app:lib -o:$@ $^
 
-4.so:
-	zig build-lib -femit-bin=4.so -fsoname=4.so -dynamic lib4.zig
+4.so: lib4.zig
+	zig build-lib $^ -dynamic -femit-bin=$@ -fsoname=$@
 
-5.so:
-	rustc --crate-type=cdylib lib5.rs -o 5.so
+5.so: lib5.rs
+	rustc $^ --crate-type=cdylib -o $@
 
-6.so:
-	nasm -felf64 lib6.asm
-	ld -shared lib6.o -o 6.so
+6.so: lib6.asm
+	nasm $^ -felf64
+	ld -shared lib6.o -o $@
 
-7.so:
-	gcc -shared lib7.s -o 7.so
+7.so: lib7.s
+	gcc $^ -shared -o $@
 
 clean:
 	rm -f *.o *.so main
