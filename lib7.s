@@ -4,21 +4,19 @@
 .globl g
 .type g, @function
 g:
-    movl    $8, %eax
-loop:
     testq   %rdi, %rdi
     je      done
-    movl    %eax, (%rsi)
+    movl    %edx, (%rsi)
     addq    $4, %rsi
-    incl    %eax
+    incl    %edx
     
-    // eax = eax modulo 10:
-    cmpl    $10, %eax
-    leal    -10(%eax), %edx
-    cmovge  %edx, %eax
+    // edx = edx modulo 10:
+    cmpl    $10, %edx
+    leal    -10(%edx), %eax
+    cmovge  %eax, %edx
 
     decq    %rdi
-    jmp     loop
+    jmp     g
 done:
     ret
 .section .note.GNU-stack, "", @progbits

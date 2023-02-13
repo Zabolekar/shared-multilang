@@ -3,14 +3,18 @@
 section .text
 global f:function
 f:
-    mov     eax, 5
-loop:
     test    rdi, rdi
     je      done
-    mov     dword [rsi], eax
+    mov     dword [rsi], edx
     add     rsi, 4
-    inc     eax
+    inc     edx
+
+    ; edx = edx modulo 10:
+    cmp     edx, 10
+    lea     eax, [edx - 10]
+    cmovge  edx, eax
+
     dec     rdi
-    jmp     loop
+    jmp     f
 done:
     ret
