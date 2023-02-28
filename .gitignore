@@ -1,4 +1,4 @@
 *.so
 main
 zig-cache
-lib6.o
+*.o
