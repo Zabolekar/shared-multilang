@@ -1,7 +1,7 @@
 run: main
 	./main
 
-main: main.c 1.so 2.so 3.so 4.so 5.so 6.so 7.so
+main: main.c 1.so 2.so 3.so 4.so 5.so 6.so 7.so 8.so
 	gcc $^ -Wl,-rpath=. -o $@
 
 1.so: lib1.c
@@ -25,6 +25,10 @@ main: main.c 1.so 2.so 3.so 4.so 5.so 6.so 7.so
 
 7.so: lib7.s
 	gcc $^ -shared -o $@
+
+8.so: lib8.asm
+	fasm $^
+	ld -shared lib8.o -o $@
 
 clean:
 	rm -f *.o *.so main
