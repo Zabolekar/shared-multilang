@@ -1,3 +1,4 @@
+.PHONY: run
 run: main
 	./main
 	python3 main.py
@@ -31,6 +32,7 @@ main: main.c 1.so 2.so 3.so 4.so 5.so 6.so 7.so 8.so
 	fasm $^
 	ld -shared lib8.o -o $@
 
+.PHONY: clean
 clean:
 	rm -f *.o *.so main
 	rm -rf zig-cache
