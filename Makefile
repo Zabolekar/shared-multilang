@@ -1,6 +1,8 @@
 .PHONY: run
 run: main
+	@echo Call shared libraries from C:
 	./main
+	@echo Call shared libraries from Python:
 	python3 main.py
 
 main: main.c 1.so 2.so 3.so 4.so 5.so 6.so 7.so 8.so
